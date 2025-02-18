@@ -17,7 +17,7 @@ def correct_skew(image_path, output_path):
     rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
     rotated = cv2.warpAffine(image, rotation_matrix, (w, h), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
     cv2.imwrite(output_path, rotated)
-    print(f"Изображение сохранено: {output_path}")
+    print(f"РР·РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРѕ: {output_path}")
 input_image = "/mnt/data/image.png"
 output_image = "/mnt/data/corrected_image.png"
 correct_skew(input_image, output_image)
