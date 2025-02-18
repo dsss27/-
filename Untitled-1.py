@@ -2,25 +2,22 @@
 import collections
 import string
 
-RUSSIAN_LETTER_FREQ = "оеаинтсрвлкмдпуяыьзбгчйхжюшцщэфё"
+RUSSIAN_LETTER_FREQ = "РѕРµР°РёРЅС‚СЃСЂРІР»РєРјРґРїСѓСЏС‹СЊР·Р±РіС‡Р№С…Р¶СЋС€С†С‰СЌС„С‘"
 
 def analyze_frequency(text):
-    """ Подсчет частоты символов в тексте. """
     text = text.lower()
     counter = collections.Counter(text)
-    sorted_chars = [char for char, _ in counter.most_common() if char in string.ascii_letters or char in 'ёйцукенгшщзхъфывапролджэячсмитьбю']
+    sorted_chars = [char for char, _ in counter.most_common() if char in string.ascii_letters or char in 'С‘Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉС„С‹РІР°РїСЂРѕР»РґР¶СЌСЏС‡СЃРјРёС‚СЊР±СЋ']
     return sorted_chars
 
 
 def build_decryption_map(cipher_text, letter_freq):
-    """ Создает таблицу замен для расшифровки """
     sorted_chars = analyze_frequency(cipher_text)
     decryption_map = {cipher: plain for cipher, plain in zip(sorted_chars, letter_freq)}
     return decryption_map
 
 
 def decrypt_text(cipher_text, decryption_map):
-    """ Расшифровывает текст с помощью таблицы замен """
     return ''.join(decryption_map.get(char, char) for char in cipher_text)
 
 
@@ -30,9 +27,9 @@ cipher_emails = [
     "enxbepbms.tkexgx@ykbxlxg.vhf"
 ]
 cipher_addresses = [
-    "ыу. Лпмшорхщтцкцл.6 тй.466",
-    "Юдuebвудашэоют жя.ч.34 юх.102",
-    "вг. Сээкэыатц.60 эф.107"
+    "С‹Сѓ. Р›РїРјС€РѕСЂС…С‰С‚С†РєС†Р».6 С‚Р№.466",
+    "Р®РґuebРІСѓРґР°С€СЌРѕСЋС‚ Р¶СЏ.С‡.34 СЋС….102",
+    "РІРі. РЎСЌСЌРєСЌС‹Р°С‚С†.60 СЌС„.107"
 ]
 
 all_cipher_text = ' '.join(cipher_emails + cipher_addresses)
@@ -41,11 +38,11 @@ decryption_map = build_decryption_map(all_cipher_text, RUSSIAN_LETTER_FREQ)
 decoded_emails = [decrypt_text(email, decryption_map) for email in cipher_emails]
 decoded_addresses = [decrypt_text(address, decryption_map) for address in cipher_addresses]
 
-print("Расшифрованные email:")
+print("Р Р°СЃС€РёС„СЂРѕРІР°РЅРЅС‹Рµ email:")
 for email in decoded_emails:
     print(email)
 
-print("\n Расшифрованные адреса:")
+print("\n Р Р°СЃС€РёС„СЂРѕРІР°РЅРЅС‹Рµ Р°РґСЂРµСЃР°:")
 for address in decoded_addresses:
     print(address)
 
