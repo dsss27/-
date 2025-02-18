@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -125,21 +123,21 @@ int main() {
     initialize_board();
     print_board();
     string player;
-    cout << "Âûáåðèòå öâåò (W/B): ";
+    cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ†Ð²ÐµÑ‚ (W/B): ";
     cin >> player;
     bool player_white = (player == "W");
     while (true) {
         if (no_capture_moves >= 15) {
-            cout << "Íè÷üÿ!" << endl;
+            cout << "ÐÐ¸Ñ‡ÑŒÑ!" << endl;
             break;
         }
         string move;
         if (player_white) {
-            cout << "Âàø õîä: ";
+            cout << "Ð’Ð°Ñˆ Ñ…Ð¾Ð´: ";
             cin.ignore();
             getline(cin, move);
             if (!is_valid_move(move)) {
-                cout << "Íåâåðíûé ââîä. Ïîïðîáóéòå ñíîâà." << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°." << endl;
                 continue;
             }
             make_move(move);
@@ -147,10 +145,10 @@ int main() {
         print_board();
         string ai_move = best_move(player_white ? 'B' : 'W');
         if (ai_move.empty()) {
-            cout << "Âû ïîáåäèëè!" << endl;
+            cout << "Ð’Ñ‹ Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð¸!" << endl;
             break;
         }
-        cout << "Õîä êîìïüþòåðà: " << ai_move << endl;
+        cout << "Ð¥Ð¾Ð´ ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ð°: " << ai_move << endl;
         make_move(ai_move);
         print_board();
     }
